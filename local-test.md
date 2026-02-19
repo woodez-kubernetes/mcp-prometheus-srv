@@ -129,6 +129,38 @@ source venv/bin/activate
 PROMETHEUS_INTEGRATION=1 python -m pytest prometheus_tools/tests/test_integration.py -v
 ```
 
+## 6. Docker
+
+### Build the image
+
+```bash
+docker build -t mcp-prometheus .
+```
+
+### Run the container
+
+```bash
+docker run --rm \
+  -e PROMETHEUS_URL=http://host.docker.internal:9090 \
+  -e DB_HOST=host.docker.internal \
+  -e DB_PORT=5432 \
+  -e DB_NAME=mcp_prometheus \
+  -e DB_USER=mcp_prometheus \
+  -e DB_PASSWORD=mcp_prometheus \
+  -e DJANGO_ALLOWED_HOSTS=localhost,127.0.0.1 \
+  -p 8000:8000 \
+  mcp-prometheus
+```
+
+> `host.docker.internal` lets the container reach services on the host machine (Prometheus, PostgreSQL).
+
+### Tag and push to DockerHub
+
+```bash
+docker tag mcp-prometheus <your-dockerhub-user>/mcp-prometheus:latest
+docker push <your-dockerhub-user>/mcp-prometheus:latest
+```
+
 ## Troubleshooting
 
 | Issue | Fix |

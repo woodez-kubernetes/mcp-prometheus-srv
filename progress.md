@@ -282,4 +282,31 @@
 
 ---
 
+## Kubernetes Service Defaults & Dockerfile — COMPLETED
+
+**Status:** Done
+
+### What was done
+
+1. **Updated `settings.py` defaults for K8s in-cluster connectivity:**
+   - `PROMETHEUS_URL` default changed from `http://localhost:9090` to `http://prometheus-server.monitoring.svc.cluster.local:80` — targets `service/prometheus-server` in the `monitoring` namespace on port 80.
+   - `DB_HOST` default changed from `localhost` to `postgres-svc` — targets `service/postgres-svc` in the same namespace on port 5432.
+   - Both remain overridable via env vars for local development.
+
+2. **Updated `.env.example`** — reflects K8s service defaults with a comment noting they can be overridden for local dev.
+
+3. **Created `Dockerfile`:**
+   - Base image: `python:3.14-slim` (matches project Python 3.14.2).
+   - Installs `libpq-dev` for PostgreSQL support.
+   - Copies `requirements.txt`, installs deps, copies app source.
+   - Exposes port 8000.
+   - Runs via `uvicorn mcp_prometheus.asgi:application --host 0.0.0.0 --port 8000`.
+   - All config injected via env vars at runtime.
+
+4. **Created `.dockerignore`** — excludes `venv/`, `__pycache__/`, `.git/`, `db.sqlite3`, `.env`, `*.pyc`, `scripts/`, markdown files, and test config.
+
+5. **Updated `local-test.md`** — added Section 6 covering Docker build, run (with `host.docker.internal` for local dev), and DockerHub push commands.
+
+---
+
 ## Stage 8: Configuration, Security & Deployment Hardening — PENDING
