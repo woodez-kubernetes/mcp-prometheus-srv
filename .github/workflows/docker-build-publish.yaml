@@ -96,14 +96,14 @@ jobs:
           fi
 
           # Update the image tag in Helm values file using yq
-          yq eval -i ".image.tag = \"${NEW_TAG}\"" helm/mcp-prometheus-srv/values.yaml
+          yq eval -i ".image.tag = \"${NEW_TAG}\"" helm/values.yaml
 
           # Configure git
           git config user.name "GitHub Actions Bot"
           git config user.email "actions@github.com"
 
           # Commit and push the change
-          git add helm//values.yaml
+          git add helm/values.yaml
           git commit -m "chore(helm): update image tag to ${NEW_TAG}
 
           Updated by GitHub Actions workflow
@@ -128,4 +128,4 @@ jobs:
           echo "docker pull ${{ secrets.DOCKERHUB_USERNAME }}/${{ env.DOCKER_IMAGE_NAME }}:latest" >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "**Helm Values Updated:** helm/mcp-prometheus-srv/values.yaml" >> $GITHUB_STEP_SUMMARY
+          echo "**Helm Values Updated:** helm/values.yaml" >> $GITHUB_STEP_SUMMARY
