@@ -1,7 +1,7 @@
 replicaCount: 1
 image:
   repository: kwood475/mcp-prometheus-srv
-  tag: release-dev-5a9f5e7
+  tag: release-dev-af400de
   pullPolicy: Always
 service:
   type: ClusterIP
