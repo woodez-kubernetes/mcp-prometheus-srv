@@ -1,20 +1,16 @@
 replicaCount: 1
-
 image:
   repository: kwood475/mcp-prometheus-srv
-  tag: latest
+  tag: release-dev-9741c06
   pullPolicy: Always
-
 service:
   type: ClusterIP
   port: 80
   targetPort: 8000
-
 ingress:
   enabled: true
   className: nginx
   host: mcp-monitor.apexkube.xyz
-
 env:
   DJANGO_SECRET_KEY: "change-me-in-production"
   DJANGO_DEBUG: "False"
