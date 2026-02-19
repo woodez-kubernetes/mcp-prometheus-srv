@@ -30,7 +30,7 @@ DEBUG = os.getenv('DJANGO_DEBUG', 'True').lower() in ('true', '1', 'yes')
 ALLOWED_HOSTS = os.getenv('DJANGO_ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
 
 # --- Prometheus ---
-PROMETHEUS_URL = os.getenv('PROMETHEUS_URL', 'http://localhost:9090')
+PROMETHEUS_URL = os.getenv('PROMETHEUS_URL', 'http://prometheus-server.monitoring.svc.cluster.local:80')
 
 
 # Application definition
@@ -86,7 +86,7 @@ DATABASES = {
         'NAME': os.getenv('DB_NAME', 'mcp_prometheus'),
         'USER': os.getenv('DB_USER', 'mcp_prometheus'),
         'PASSWORD': os.getenv('DB_PASSWORD', 'mcp_prometheus'),
-        'HOST': os.getenv('DB_HOST', 'localhost'),
+        'HOST': os.getenv('DB_HOST', 'postgres-svc'),
         'PORT': os.getenv('DB_PORT', '5432'),
     }
 }
