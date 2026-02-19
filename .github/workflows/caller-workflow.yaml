@@ -5,7 +5,7 @@ on:
       - release-dev
 
     paths-ignore:
-      - 'helm/mcp-prometheus-srv/values.yaml'
+      - 'helm/values.yaml'
       - '**.md'
 
     
@@ -20,13 +20,13 @@ jobs:
     secrets: inherit
 
   # 2. deploy app to k8s using argocd
-##  deploy-code:
-##    needs: build-code
-##    uses: ./.github/workflows/deploy.yaml
-##    permissions:
-##      contents: write
-##      packages: write
-##    secrets: inherit
+  deploy-code:
+    needs: build-code
+    uses: ./.github/workflows/deploy.yaml
+    permissions:
+      contents: write
+      packages: write
+    secrets: inherit
 
 
 
