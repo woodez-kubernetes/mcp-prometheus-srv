@@ -32,6 +32,7 @@ spec:
     namespace: woodez-database
 
   syncPolicy:
+    # test
     # automated:
     #  prune: true
     #  selfHeal: true
