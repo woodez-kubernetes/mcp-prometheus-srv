@@ -26,14 +26,12 @@ spec:
             - configMapRef:
                 name: {{ include "mcp-prometheus.fullname" . }}
           livenessProbe:
-            httpGet:
-              path: /
+            tcpSocket:
               port: http
             initialDelaySeconds: 10
             periodSeconds: 30
           readinessProbe:
-            httpGet:
-              path: /
+            tcpSocket:
               port: http
             initialDelaySeconds: 5
             periodSeconds: 10
