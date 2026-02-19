@@ -11,7 +11,7 @@ spec:
   source:
     repoURL: https://github.com/woodez-kubernetes/mcp-prometheus-srv.git
     targetRevision: release-dev
-    path: helm/mcp-prometheus-srv
+    path: helm
 
 
     helm:
